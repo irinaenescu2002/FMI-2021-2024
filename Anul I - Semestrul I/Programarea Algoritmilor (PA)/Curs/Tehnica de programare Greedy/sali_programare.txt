@@ -1,0 +1,14 @@
+Numar minim de sali: 3
+
+Sala 1:
+	11:15-13:15 Spectacol 6
+
+Sala 2:
+	08:20-09:50 Spectacol 3
+	10:00-11:20 Spectacol 1
+	11:30-14:00 Spectacol 4
+
+Sala 3:
+	09:30-12:10 Spectacol 2
+	12:10-13:10 Spectacol 5
+	15:00-15:30 Spectacol 7
