@@ -1,0 +1,210 @@
+ANGAJATI
+100	Petrescu	Livia Ana	0734786345	petrescu.livia-ana@akira.com		02-FEB-10	4500	profesionist
+101	Preda		Mircea		0739872445	preda.mircea@akira.com			07-SEP-12	2300	avansat
+102	Radu		Andrei		0786432900	radu.andrei@akira.com			12-OCT-13	2100	elementar
+103	Dima		Raluca		0765480999	dima.raluca@akira.com			12-OCT-13	4000	profesionist
+104	Ionescu		Cristian George	0754087662	ionescu.cristian-george@akira.com	22-JUL-20	1900	incepator
+105	Dumitru		Marian		0744326755	dumitru.marian@akira.com		01-DEC-21	2000	
+106	Voinea		Elena		0734987655	voinea.elena@akira.com			02-MAR-20	3650	avansat
+107	Albu		Mihai Iustin	0766432900	albu.mihai-iustin@akira.com		05-AUG-19	5000	profesionist
+108	Mihaiu		Bogdan		0765112309	mihaiu.bogdan@akira.com			30-SEP-17	2800	intermediar
+
+
+CAI
+10	Akira	F	Shagya Arab		maro		03-MAY-16	202020
+11	Nero	M	Frizian			negru		09-FEB-17	303030
+12	Diablo	M	Frizian			negru		18-NOV-16	303030
+13	Fabio	M	Gypsy Vanner		negru cu alb	24-SEP-18	606060
+14	Rambo	M	Hanoverian		maro		06-DEC-18	707070
+15	Luna	F	Arab			alb		09-MAR-16	808080
+16	Dakota	F	Appaloosa		maro cu alb	30-AUG-17	101010
+17	Marvin	M	American Quarter	maro cu negru	10-OCT-18	404040
+18	Rock	M	Morgan	maro 		inchis		17-DEC-18	505050
+19	Inka	F	Norwegian Fjord		maro cu alb	23-DEC-19	606060
+
+
+CENTRE DRESAJ 
+202020	Jump!			14-DEC-05	0367900900	contact@jump.com		Romania		Prahova		Paulesti	Marin Preda	37	2
+303030	Horse Show		08-SEP-98	0255666900	contact@horseshow.com		Romania		Sibiu		Cisnadie	Ion Creanga	324	1
+404040	Rodeo Life		02-AUG-10	0233555111	horses@rodeolife.com		Romania		Brasov		Cristian	Pinului		124	4
+505050	Horse Jump Center	02-NOV-05	0310000300	horses@jumpcenter.com		Romania		Cluj		Cluj		Cezar Petrescu	351	2
+606060	Horse Relax		05-DEC-09	0455129880	relax@horseridingcenter.com	Romania		Ilfov		Voluntari	Crinilor	25	5
+101010	Riding Center		07-APR-00	0323456785	contactus@ridingcenter.com	Romania		Brasov		Sanpetru	Lalelelor	67	3
+707070	Jump With Us!		03-JUL-06	0312555777	contact@jumpwithus.com		Romania		Ilfov		Chiajna		Frumoasa	154	2
+808080	Spirit			02-APR-02	0324775889	horses@spirit.com		Romania		Ialomita	Slobozia	Mare		153	1
+
+
+CATEGORII
+1	dresaj				40
+2	sarituri peste obstacole	60
+3	plimbari pe teren accidentat	40
+4	reining				50
+5	plimbari simple			30
+
+
+MEDICI
+111	Diaconu		Marius		0789564126	diaconumarius@gmail.com	
+222	Pirvu		Ecaterina	0785345876	pirvuecaterina@animalvet.com	111111
+333	Mircea		Luiza Ioana	0745234870	mircealuiza@vet.com		222222
+444	Popescu		Iolanda		0712876900	popescuiolanda@vet.com		222222
+555	Bajenaru	Roxana		0745782338	bajenaruroxana@vetcenter.com	333333
+666	Marc		Alexandru	0784678334	alexandru.marc@gmail.com	
+777	Brincoveanu	Matei Ioan	0754789341	brincoveanumatei@savealife.com	444444
+888	Raducea		Amanda		0785673450	raduceaamanda@animalclinic.com	555555
+
+
+CONSULTATII
+16-MAR-22	888	13	Clinic sanatos
+18-MAR-22	888	19	Necesita odihna 3 zile
+19-MAR-22	888	13	Necesita odihna o saptamana
+20-MAR-22	222	16	Regim alimentar
+21-MAR-22	333	10	Supraveghere in urma vaccinarii
+22-MAR-22	444	10	Interpretare reactii vaccinare
+27-MAR-22	777	14	Recuperare fizica o luna
+30-MAR-22	555	14	Operatie
+16-APR-22	777	14	Verificare stare clinica dupa operatie
+08-APR-22	888	11	Clinic sanatos
+09-APR-22	444	12	Vaccinare cu success
+11-APR-22	222	15	Recomandare regim
+15-APR-22	888	17	Clinic sanatos
+27-APR-22	888	18	Oboseala musculara
+28-APR-22	111	11	Clinic sanatos
+29-APR-22	666	15	Verificare stadiu regim
+
+
+CABINETE VETERINARE
+111111	Animal Vet		endoscopie		19-OCT-99	0255675435	contact.vet@animalvet.com	Romania	Ilfov		Chiajna		Barbu Vacarescu		89
+222222	Vet For You		vaccinare		25-AUG-14	0355110990	vet4u@vet.com			Romania	Iasi		Iasi		Primaverii		234
+333333	Horse Vet Center	chirurgie generala	19-AUG-00	0722675123	horsevet@vetcenter.com		Romania	Ialomita	Amara		George Enescu		90
+444444	Save A Life		chirurgie generala	13-DEC-99	0211333545	chirurgie@savealife.com		Romania	Ilfov		Voluntari	Mihail Kogalniceanu	891
+555555	Animal Clinic		medicina generala	11-NOV-04	0555898777	contact@animalclinic.com	Romania	Ilfov		Chiajna		Soarelui		32
+
+
+CONTRACTE
+01-MAY-16	100	100303	1825
+30-APR-21	104	100303	365
+07-JUN-18	101	100404	365
+01-MAY-16	102	100202	365
+01-MAY-17	103	100505	1095
+01-MAY-20	106	100505	365
+05-JUN-16	103	100101	365
+02-JUN-17	102	100101	
+29-APR-21	106	100505	
+06-JUN-18	108	100404	365
+05-MAY-19	108	100404	730
+07-MAY-21	106	100404	365
+02-MAY-22	105	100404	730
+
+
+FIRME_RESURSE
+100101	Horse Vet		28-SEP-89	0345000222	contact@horsevet.com		Romania	Prahova		Ploiesti	Mihai Eminescu	352	medicamente
+100202	Equestria		07-DEC-00	0211000567	contact.us@equestria.com	Romania	Iasi		Iasi		Zambilelor	24	echipament sportiv
+100303	Equine Food		13-NOV-90	0380999111	food.for.you@equine.com		Romania	Bucuresti	Sector 6	Primaverii	349	hrana
+100404	Food For H		01-JAN-04	0243555000	food@foodforh.com		Romania	Constanta	Mangalia	Rozelor		21	hrana
+100505	Equine Equipment	21-MAR-01	0244909010	equipment@equinelife.com	Franta	Normandie	Caen		Basse		27	echipament sportiv
+
+
+LOCATII
+101	Romania		Bucuresti	Sector 6	Tudor Vladimirescu	87	100101
+202	Romania		Ilfov		Chiajna		Garii			34	100202
+303	Romania		Prahova		Magurele	Narciselor		523	100202
+404	Romania		Timisoara	Timisoara	Libertatii		129	100404
+505	Romania		Bacau		Bacau		Independentei		21	100303
+606	Romania		Ilfov		Voluntari	Veronica Micle		78	100505
+707	Franta		Occitanie	Toulouse	Jacques Chirac		653	100505
+808	Moldova		Chisinau	Chisinau	Unirii			23	100303
+
+
+AVIZE 
+123456	01-FEB-22	02-FEB-22	Ionescu Mihai Petre	200
+123457	07-FEB-22	10-FEB-22	Miclea Ioana		201
+123458	14-FEB-22	17-FEB-22	Ionescu Mihai Petre	203
+123459	26-FEB-22	28-FEB-22	Georgescu Laurentiu	204
+123460	24-MAR-22	27-MAR-22	Trandafir George	205
+123461	01-MAR-22	02-MAR-22	Georgescu Laurentiu	206
+123462	04-FEB-22	08-FEB-22	Ionescu Mihai Petre	207
+123463	19-FEB-22	21-FEB-22	Popescu Paula		208
+123464	10-MAR-22	20-MAR-22	Vasilescu Maria		209
+123465	01-APR-22	07-APR-22	Vasilescu Maria		210
+
+
+PROGRAME BOXA 
+07:00	07:30
+07:30	08:00
+08:00	08:30
+08:30	09:00
+09:00	09:30
+09:30	10:00
+10:00	10:30
+10:30	11:00
+19:00	19:30
+19:30	20:00
+20:00	20:30
+20:30	21:00
+21:00	21:30
+
+PROGRAME CLIENT
+11:00	12:00	11:25	11:30
+12:00	13:00	12:25	12:30
+13:00	14:00	13:25	13:30
+14:00	15:00	14:25	14:30
+15:00	16:00	15:25	15:30
+16:00	17:00	16:25	16:30
+17:00	18:00	17:25	17:30
+18:00	19:00	18:25	18:30
+
+CLIENT
+200	Udrea		Robert George		16-NOV-02	0756432990	
+201	Popescu		Miruna Georgiana	17-OCT-05	0752139800	elementar
+203	Luca		Ionel			23-SEP-03	0750987123	incepator
+204	Cristea		Larisa			01-JAN-02	0776543289	profesionist
+205	Costea		Mihnea			12-MAY-09	0755438907	incepator
+206	Preda		Denisa			06-MAR-04	0763597664	elementar
+207	Paun		Nicoleta		19-DEC-03	0787324553	intermediar
+208	Dobrescu	Teodora Maria		05-SEP-04	0767332896	avansat
+209	Teodorescu	Mihai			04-SEP-01	0768543200	incepator
+210	Savu		Iulia			28-FEB-06	0788934756	incepator
+
+
+INGRIJIRI
+08-MAR-22	08:00	08:30	105	10	
+11-MAR-22	09:00	09:30	105	11	Paie insuficiente
+10-MAR-22	20:00	20:30	104	12	
+16-MAR-22	08:00	08:30	105	13	
+19-MAR-22	07:00	07:30	102	14	
+23-MAR-22	10:30	11:00	105	15	Coama incalcita
+26-MAR-22	08:00	08:30	103	16	
+30-MAR-22	19:00	19:30	108	17	Fixare potcoave
+03-APR-22	20:00	20:30	105	18	
+08-APR-22	08:00	08:30	106	19	
+
+
+PROGRAMARI
+02-FEB-22	12:00	13:00	200	104	13	30
+10-FEB-22	14:00	15:00	201	102	15	40
+01-MAR-22	15:00	16:00	204	100	10	60
+02-APR-22	12:00	13:00	203	108	19	30
+03-MAR-22	16:00	17:00	204	107	10	60
+07-APR-22	14:00	15:00	205	104	13	30
+02-MAY-22	18:00	19:00	206	101	16	40
+12-FEB-22	12:00	13:00	207	102	11	40
+02-MAR-22	13:00	14:00	208	106	14	60
+03-MAY-22	15:00	16:00	209	105	13	30
+09-APR-22	12:00	13:00	210	102	15	40
+09-APR-22	15:00	16:00	204	107	10	60
+
+NOILE PROGRAMARI
+02-FEB-22	12:00	13:00	200	104	13	30
+10-FEB-22	14:00	15:00	201	102	15	40
+01-MAR-22	15:00	16:00	204	100	10	60
+02-APR-22	12:00	13:00	203	108	19	30
+03-MAR-22	16:00	17:00	204	107	10	60
+07-APR-22	14:00	15:00	205	104	13	30
+02-MAY-22	18:00	19:00	206	101	16	40
+12-FEB-22	12:00	13:00	207	102	11	40
+02-MAR-22	13:00	14:00	208	106	14	60
+03-MAY-22	15:00	16:00	209	105	13	30
+09-APR-22	12:00	13:00	210	102	15	40
+09-APR-22	15:00	16:00	204	107	10	60
+10-APR-22	18:00	19:00	200	105	19	30
+14-APR-22	12:00	13:00	207	103	11	40

@@ -1,0 +1,69 @@
+<!-- Presupunem ca in documentul HTML exista un input de tip text cu id-ul "numar" si 10 paragrafe ale caror 
+continuturi sunt cuvinte separate prin spatii (ex: <p >examen la tehnici web </p >). In inputul de tip 
+text se va scrie un numar intreg (fara validare, presupuneti ca e corect). La prima apasare a tastei "s" 
+se preia numarul din inputul de tip text si se sterge din secunda in secunda cate un paragraf care contine 
+un numar de cuvinte mai mare strict decat numarul din input. Dupa ce s-a terminat stergerea tuturor 
+paragrafelor care indeplinesc conditia, numarul paragrafelor sterse va fi salvat in localStorage 
+iar la urmatoarea reincarcare a paginii, ea va fi valoarea implicita a elementului input de tip text. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>P3</title>
+<script>
+window.onload=function(){
+
+  var input=document.getElementById("numar");
+
+  if(localStorage.getItem("nr")){
+    input.value=localStorage.getItem("nr");
+  }
+
+  //var input=document.getElementById("numar");
+  var par=document.getElementsByTagName("p");
+  var nr=par.length;
+
+  window.onkeydown=function(event){
+    if(event.key === "s"){
+      	window.onkeydown=null;
+        var c=setInterval(function(){
+          var x;
+          for(let p of par){
+            if (p.innerHTML.split(" ").length > parseInt(input.value)){
+              x=p;
+              break;
+            }
+          }
+          if(x){
+            document.body.removeChild(x);   //parinte.removeChild(copil)
+          }
+          else {
+            clearInterval(c);
+            alert(nr-par.length);
+            localStorage.setItem("nr",nr-par.length);
+          }
+        },1000);
+      }
+    }
+
+  }
+</script>
+</head>
+<body>
+
+<input id="numar" type="text">
+
+<p>Azi este o zi cu soare</p>
+<p>Azi este o zi calduroasa</p>
+<p>Azi este marti</p>
+<p>Azi este o zi cu soare</p>
+<p>Azi este o zi foarte calda</p>
+<p>Azi este o zi cu soare</p>
+<p>Azi este o zi</p>
+<p>Azi</p>
+<p>O zi cu soare</p>
+<p>Azi este o zi cu soare</p>
+
+</body>
+</html>

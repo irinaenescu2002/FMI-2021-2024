@@ -1,0 +1,395 @@
+* {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+div {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.norisori {
+    background-color: #78c6f7;
+    background: linear-gradient(#78c6f7,#bbdef9);
+    width: auto;
+    height: 250px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+}
+#imagininorisori{
+    position: absolute;
+    height: inherit;
+    width: 100%;
+    background: url("./norisori.png");
+    background: url("./norisori2.png") 0 200px,
+    url("./norisori3.png") 0 300px,
+    url("./norisori4.png") 100px 250px;
+    animation: nor 20s linear infinite;
+}
+@keyframes nor {
+    from {
+        background-position: 0 200px, 0 300px, 100px 250px;
+    }
+    to {
+        background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+    }
+}
+
+.titlu {
+    width: inherit;
+    height: auto;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 100px;
+    font-weight: bolder;
+    z-index: 1;
+    position: relative;
+    z-index: 2;    
+    animation-name: animatiespirit;
+    animation-duration: 2s;
+}
+@keyframes animatiespirit {
+    0% {left: 100%}
+    100% {left: 0%}
+}
+
+.motto {
+    width: auto;
+    height: auto;
+    align-self: flex-end;
+    right: 0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    position: absolute;
+    animation-name: opacitate;
+    animation-duration: 3s;
+}
+@keyframes opacitate {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;;
+    }
+}
+
+.meniu{
+    background-color: black;
+    align-content: flex-end;
+    justify-content: flex-start;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    position: relative;
+    overflow: visible;
+    z-index: 30;
+}
+.meniutelefon {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: black;
+    position: absolute; 
+    font-weight: bolder;
+    flex-direction: row;
+    height: 100%;
+}
+.meniutelefon .dropdown {
+    width: 50px;
+}
+.meniubara {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: black;
+    position: absolute; 
+    font-weight: bolder;
+    flex-direction: row;
+    height: 100%;
+}
+.meniubara .elemente, .meniubara .dropdown {
+    float: left;
+    height: inherit;
+    align-items: center;
+    justify-content: center;
+}
+.meniutelefon .elemente, .meniutelefon .dropdown {
+    float: left;
+    height: inherit;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.elemente a, .drop {
+    overflow: hidden;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    animation-name: opacitate;
+    animation-duration: 2s;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.drop a {
+    position: absolute;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.drop a:hover {
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+}
+.elemente a:hover, .dropdown:hover .drop {
+    background-color: #bbdef9;
+    background: linear-gradient(#bbdef9,white);
+    color: black;
+}
+.dropdown {
+    overflow: visible;
+    position: relative;
+    height: 50px;
+}
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background: linear-gradient(to right,white, #bbdef9);
+    color: black;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+    z-index: 19;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+.elemente:hover a, .dropdown:hover{
+    color: black;
+}
+a:link{
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    width: auto;
+    height: auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: 
+    "imagine imagine text text"
+    "imagine imagine text text"
+    "imagine imagine text text"
+    "imagine imagine text text"
+    "imagine imagine text text"
+    "imagine imagine text text"
+    "imagine imagine text text"
+    "imagine imagine text text";
+}
+
+.imagine {
+    grid-area: imagine;
+    align-content: center;
+    justify-content: center;
+    z-index: 3;
+}
+img {
+    width: 60%;
+    height: 80%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 6px;
+    animation-name: opacitate;
+    animation-duration: 4s;
+    justify-items: flex-end;
+    margin-bottom: 0;
+    z-index: 5;
+}
+
+.text {
+    padding: 20px;
+    margin: 10px;
+    border: 2px;
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: inherit;
+    grid-area: text;
+}
+input, option {
+    width: 300px;
+    height: 30px;
+}
+.submit {
+    align-self: flex-end;
+}
+.logout {
+    align-self: flex-end;
+}
+.another {
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+.formm {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+}
+.sistem {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+}
+.rec {
+    align-content: flex-start;
+    text-align: left;
+}
+
+.jos {
+    width: auto;
+    height: 100px;
+    background: black;
+    justify-content: center;
+    color: white;
+    font-size: large;
+    animation-name: c;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+@keyframes c {
+    0% {
+        color: black;
+    
+    }
+    50% {
+        color: white;
+        
+    }
+    75% {
+        color: white;
+        
+    }
+    100% {
+        color: black;
+    }
+}
+
+.dropdown{
+    width: 100px;
+}
+
+@media screen and (min-width : 920px) {
+    body {
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        display: flexbox;
+    }
+    .meniutelefon {
+        display: none;
+    }
+}
+
+@media screen and (max-width : 920px) and (min-width: 600px) {
+    body {
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        display: flexbox;
+    }
+    .grid {
+        display: grid;
+        width: auto;
+        height: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-areas: 
+        "text text"
+        "text text"
+        "imagine imagine"
+        "imagine imagine"
+        "imagine imagine"
+        "imagine imagine"
+        ;
+    }
+    .meniutelefon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        display: flexbox;
+    }
+    .grid {
+        display: grid;
+        width: auto;
+        height: auto;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas: 
+        "text"
+        "text"
+        "imagine"
+        "imagine"
+        ;
+    }
+    .meniubara {
+        display: none;
+    }
+}
+

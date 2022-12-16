@@ -1,0 +1,65 @@
+body{
+    background-color: antiquewhite;
+}
+
+h1{
+    background-color: burlywood;
+    color: black;
+    padding: 5px 5px;
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: bisque;
+    padding: 5px 5px;
+    z-index: 1;
+    box-shadow: 0px 2px 10px 0px black;
+    text-align: center;
+    border: 1px solid black;
+    border-color: aliceblue;
+    border-radius: 10px;
+    animation-name: animatie;
+    animation-duration: 2s;
+}
+
+@keyframes animatie {
+    from {background-color: burlywood}
+    to {background-color: bisque;}
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.meniu {
+    background-color: burlywood;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px aliceblue;
+    width: 100px;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.butonel {
+    background-color: burlywood;
+    width: 100px;
+    padding: 3px;
+    text-align: center;
+    margin: 5px;
+    animation-name: animatie2;
+    animation-duration: 3s;
+    border-radius: 6px;
+}
+
+@keyframes animatie2 {
+    from {background-color: bisque;}
+    to {background-color: burlywood;}
+}

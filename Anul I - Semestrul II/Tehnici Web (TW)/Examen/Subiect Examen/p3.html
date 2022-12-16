@@ -1,0 +1,80 @@
+<!-- Scrieti un document HTML care sa contina un input de tip text cu id-ul “data” si un element select avand optiunile "red", 
+    "green", "blue" avand initial selectata prima optiune. Scrieti cod JavaScript pentru a rezolva cerintele: 
+
+a) la incarcarea paginii se va afisa in input data curenta iar la fiecare 3s se va selecta automat cate o optiune din select 
+incepand cu prima iar textul din input (data curenta) se va colora in culoarea optiunii selectate.  Dupa ultima optiune, 
+selectia se va relua de la inceput.  
+
+b) in situatia de la punctul a), daca se apasa tasta "s", selectia se va opri iar la reincarcarea paginii continutul inputului sa 
+apara colorat in culoarea ultimei optiuni selectate inainte de refresh.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3</title>
+</head>
+<body>
+    <!-- INPUT  -->
+    
+    <input type="text" id="data"/>
+    
+    <!-- OPTIUNE SE SELECT  -->
+    
+    <select>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+
+    <script>
+
+        // SELECTEAZA OPTIUNILE SI INPUTUL DUPA TAG, LA FEL SI SELECTUL
+        // SALVEAZA UN VECTOR CU CULORI SI DATA CURENTA   
+
+        const dataInput = document.getElementById("data");
+        const options = document.getElementsByTagName("option");
+        let select = document.getElementsByTagName("select")[0];
+        const colors = ["red", "green", "blue"];
+        dataInput.value = new Date();
+
+        if(localStorage.getItem("color")) {
+            select.value = localStorage.getItem("color");
+        }
+
+        // GASIREA INDEXULUI UNUI VECTOR --> VECTOR[VECTOR.findIndex(ELEMENT => ELEMENT === CE-CAUTAM)]
+
+        dataInput.style.color = colors[colors.findIndex(color => color === select.value)];
+        localStorage.setItem("color", colors[colors.findIndex(color => color === select.value)])
+        
+        // SETAREA INDEXULUI PENTRU CULOARE
+        // setInterval(() = > {FUNCTIE}, TIMP)
+
+        const id = setInterval(() => {
+            let nextIndex;
+            let currentIndex = colors.findIndex(color => color === select.value);
+            if(currentIndex < 2) {
+                nextIndex = ++currentIndex;
+            } else {
+                nextIndex = 0;
+            }
+
+            select.value = colors[nextIndex];
+            localStorage.setItem("color", colors[nextIndex])
+            dataInput.style.color = colors[nextIndex];
+
+        }, 3000)
+
+        // EVENIMENT document.addEventListener("keydown", (e) => {if(e.key === "tasta")....})
+        // OPRIRE INTERVAL --> clearInterval(nume-variabila-interval)
+
+        document.addEventListener("keydown", (e) => {
+            if(e.key === "s") {
+                clearInterval(id);
+            }
+        })
+    </script>
+</body>
+</html>

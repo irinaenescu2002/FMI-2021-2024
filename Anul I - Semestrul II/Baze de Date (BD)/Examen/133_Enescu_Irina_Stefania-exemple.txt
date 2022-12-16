@@ -1,0 +1,212 @@
+-- La inserarea programărilor în tabel, costul acestora a fost trecut 0. 
+-- Să se actualizeze prețul conform categoriei pentru care se antrenează clienții la programarea respectivă. 
+update programari p
+set p.cost = (select pret_ora_echitatie
+              from categorii cat, centre_dresaj cd, cai
+              where cat.cod_categorie = cd.cod_categorie 
+              and cai.cod_centru_dresaj = cd.cod_centru 
+              and cai.cod_cal = p.cod_cal);
+              
+-- 12 randuri actualizate
+
+
+
+-- Angajații centrului de echitație au fost înștiințați printr-un email al unei 
+-- firme de resurse că aceasta și-a închis toate depozitele din România. 
+-- Știind că email-ul este equipment@equinelife.com, 
+-- să se elimine locațiile depozitelor închise din baza de date.   
+delete from locatii 
+where upper(tara_depozit) = 'ROMANIA' 
+and cod_firma = (select cod_firma 
+                 from firme_resurse
+                 where lower(email) = 'equipment@equinelife.com');
+                 
+-- 1 rand sters 
+
+
+
+-- La programarea din data de 7 aprilie 2022 desfășurată în intervalul orar 14:00 – 15:00, 
+-- angajatul centrului de echitație a fost înștiințaț de către client că în ultimul 
+-- aviz pe care l-a adus s-a strecurat o greșeală: numele medicului era de fapt Zamfir Ionel Mihai. 
+-- Modificați acest aspect în baza de date. 
+update avize 
+set doctor = 'Zamfir Ionel Mihai' 
+where data_predare = 
+(select max(data_predare)
+from avize 
+group by cod_client
+having cod_client = (select cod_client
+                    from programari 
+                    where data_programare = to_date('07-04-2022', 'dd-mm-yyyy') and 
+                    ora_inceput = '14:00' and ora_final = '15:00'))
+and cod_client = (select cod_client
+                  from programari 
+                  where data_programare = to_date('07-04-2022', 'dd-mm-yyyy') and 
+                  ora_inceput = '14:00' and ora_final = '15:00');
+
+-- 1 rand actualizat
+
+
+
+-- Pentru fiecare nivel al pregatirii in domeniul echitatiei, sa se afiseze numele, prenumele si 
+-- salariul celor mai bine platiti angajati, precum si numarul de lectii pe care l-au tinut.
+-- Ordonati aceste rezultate descrescator in functie de salariu.
+
+with programari_angajati as 
+(select cod_angajat, count(*) as numar_programari from programari group by cod_angajat)
+select nume, prenume, salariu, a.nivel, numar_programari
+from angajati a, (select nivel, max(salariu) as maxim_salarii
+                from angajati 
+                group by nivel) aux, programari_angajati p
+where a.salariu = aux.maxim_salarii and a.nivel = aux.nivel and p.cod_angajat = a.cod_angajat
+order by salariu desc;
+
+-- 5 rezultate 
+
+
+
+-- Să se afișeze mesaje despre caii maro ai centrului de echitație după cum urmează:
+-- '{nume} este un cal {culoare} de rasa {rasa} avand {varsta} ani si fiind antrenat pentru {categorie}.'
+-- Sa se afiseze intr-o coloana separata anotimpul in care acestia s-au nascut si ultimul medic veterinar care i-a consultat. 
+with ultima_consultatie as 
+(select max(data_consultatie) as max_data, cod_cal
+from consultatii
+group by cod_cal)
+select concat(concat(concat(concat(concat(cai.nume, ' este un cal '), culoare), ' de rasa '), rasa), ' avand ')
+|| concat(concat(concat(to_char(trunc(months_between(sysdate, data_nasterii)/12)),' ani si fiind antrenat pentru '), cat.tip), '.') 
+as informatii, case
+               when extract(month from data_nasterii) in (12, 1, 2) then 'iarna'
+               when extract(month from data_nasterii) in (3, 4, 5) then 'primavara'
+               when extract(month from data_nasterii) in (6, 7, 8) then 'vara'
+               when extract(month from data_nasterii) in (9, 10, 11) then 'toamna'
+               end as Anotimp, med.nume || ' ' || med.prenume as Doctor
+from cai, categorii cat, centre_dresaj cd, ultima_consultatie uc, consultatii cst, medici med
+where instr(upper(culoare), 'MARO') != 0 and cai.cod_centru_dresaj = cd.cod_centru and cd.cod_categorie = cat.cod_categorie
+and cai.cod_cal = uc.cod_cal and uc.max_data = cst.data_consultatie and cst.cod_medic = med.cod_medic;
+
+-- 6 rezultate 
+
+
+
+--Centrul de echitatie se gândește să modifice salariile salariatilor 
+--care au fost angajati in luni ale anului in care au fost angajati mai mult de 1 angajat.
+--Modificarea se face in functie de nivelul fiecarui salariat:
+--- daca este profesionist, salariul se mareste cu 25%
+--- daca este avansat, salariul se mareste cu 500 ron
+--- daca este intermediar, salariul se micsoreaza cu 250 ron
+--- daca este incepator, salariul se micsoreaza cu 5%
+--- daca nu este precizat nivelul, salariul se mareste cu 100 rom
+--- altfel, nu se modifica
+-- Sa se afiseze numele, prenumele, data_angajarii, nivelul, salariul si noua propunere de salariu pentru fiecare angajat. 
+-- Daca nu este precizat nivelul sa se afiseze un mesaj corespunzator in locul valorii null.
+
+select nume, prenume, data_angajarii, nvl(nivel, 'nu este precizat nivelul'), salariu, 
+       decode (nvl(initcap(nivel), 'Nu este precizat nivelul'), 
+       'Profesionist', salariu + 25/100*salariu,
+       'Avansat', salariu + 500,
+       'Intermediar', salariu - 250,
+       'Incepator', salariu - 5/100*salariu,
+       'Nu este precizat nivelul', salariu + 100,
+       salariu) as propunere_salariu
+from angajati
+where extract(month from data_angajarii) in
+(select extract(month from data_angajarii) as luna
+from angajati 
+group by extract(month from data_angajarii)
+having count(*) > 1);
+
+-- 5 rezultate 
+
+
+
+-- Să se selecteze numele firmelor și tipul de resurse furnizate pentru firmele care
+-- au depozite în judetele în care se află și cabinetele veterinare în care se găsesc 
+-- medicii veterinari ce au consultat toate iepele centrului de echitație. 
+select nume, tip_resurse
+from firme_resurse
+where cod_firma in (select cod_firma
+                    from locatii 
+                    where judet_depozit in (select distinct judet
+                                            from cabinete_veterinare, medici
+                                            where cod_medic in (select distinct cod_medic
+                                                                from consultatii 
+                                                                where cod_cal in (select cod_cal
+                                                                                  from cai 
+                                                                                  where sex = 'F')) 
+                                                            and medici.cod_cabinet = cabinete_veterinare.cod_cabinet));
+
+-- 1 rezultat 
+
+
+
+-- Sa se afiseze detalii despre lectiile de echitatie la care au participat 
+-- clienti care au adus ultimul aviz medical in luna februarie. In locul codurilor de identificare
+-- sa se afiseze numele clientului, angajatului si calului. 
+select data_programare, ora_inceput, ora_final, 
+(select nume || ' ' || prenume 
+from clienti cc
+where p.cod_client = cc.cod_client) as client,
+(select nume || ' ' || prenume 
+from angajati aa 
+where p.cod_angajat = aa.cod_angajat) as angajat,
+(select nume 
+from cai ccc 
+where p.cod_cal = ccc.cod_cal) as cal
+from programari p -- selectez din programari programarile corespunzatoare acelor clienti
+where p.cod_client = 
+(select cod_client
+from clienti c -- selectez din clienti clientii cu avize cu luna maxima = februarie
+where c.cod_client = p.cod_client and extract(month from (select data_predare
+                            from avize av -- selectez din avize luna maxima 
+                            where c.cod_client = av.cod_client and 
+                            data_predare = (select max(data_predare) from avize aav where aav.cod_client = c.cod_client group by cod_client))) = 2); 
+
+-- 10 rezultate 
+
+
+-- Sa se afișeze numele cailor, codul centrului de dresaj si numele centrului de dresaj de la care provin pentru caii care au culoarea 
+-- maro și sunt de sex feminin și centrele de dresaj care au luna înființării decembrie. 
+-- Cerere:
+--R1 = PROJECT(CAI, cod_cal, nume, culoare, sex, cod_centru_dresaj)
+--R2 = SELECT(R1, instr(upper(culoare), 'MARO') != 0)
+--R3 = SELECT(R2, sex = 'F')
+--R4 = PROJECT(R3, nume, cod_centru_dresaj)
+--R5 = PROJECT(CENTRE_DESAJ, cod_centru, nume, data_infiintare)
+--R6 = SELECT(R5, extract(month from data_infiintare) = 12)
+--R7 = PROJECT(R6, nume, cod_centru)
+--Rezultat = JOIN(R4, R7)
+select cd.cod_centru, cd.nume, c.nume from 
+(select nume, cod_centru_dresaj from (select * from (select * from (select cod_cal, nume, culoare, sex, cod_centru_dresaj
+from cai)
+where instr(upper(culoare), 'MARO') != 0)
+where sex = 'F')) c,
+(select nume, cod_centru from (select * from (select cod_centru, nume, data_infiintare
+from centre_dresaj) 
+where extract(month from data_infiintare) = 12)) cd
+where c.cod_centru_dresaj = cd.cod_centru;
+
+-- 2 rezultate 
+
+
+
+-- Cerere optimizata 
+select cod_centru, c.nume, cd.nume
+from (select * from centre_dresaj where extract(month from data_infiintare) = 12) cd,
+(select * from cai where instr(upper(culoare), 'MARO') != 0 and sex = 'F') c
+where cd.cod_centru = c.cod_centru_dresaj;
+
+select cod_centru, c.nume, cd.nume
+from cai c, centre_dresaj cd
+where cod_centru_dresaj = cod_centru 
+and extract(month from data_infiintare) = 12 
+and instr(upper(culoare), 'MARO') != 0 
+and sex = 'F';
+
+-- 2 rezultate 
+
+
+
+ 
+
+
+

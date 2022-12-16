@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <h1>Buna seara!!</h1>
+	<p> Laboratorul 1 </p>
+  </body>
+</html>

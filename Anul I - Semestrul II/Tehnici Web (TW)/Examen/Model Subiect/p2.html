@@ -1,0 +1,69 @@
+<!-- La incarcarea paginii, se creeaza 10 divuri care primesc stilizarea unei clase CSS "dreptunghi". 
+Clasa "dreptunghi" atribuie un border, o latime si inaltime divurilor generate, o culoare de background 
+si face ca divurile sa fie pozitionate pe acelasi rand cu o distanta de 10px intre ele. 
+La fiecare click pe orice div cu clasa “dreptunghi”, acesta va creste in inaltime (in jos) cu 10px. 
+Daca se da click in fereastra, in afara divurilor, toate divurile revin la dimensiunea initiala. 
+Click-ul pe un div nu trebuie sa declanseze actiunea click-ului din afara divurilor. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>P2</title>
+
+    <style>
+      
+      /* STILIZARE DREPTUNGHI */
+
+      .dreptunghi {
+        width: 100px;
+        height: 150px;
+        border: 1px solid red;
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+    </style>
+
+    <script>
+
+      // LA INCARCAREA PAGINII --> window.onload = function () {functie}
+
+      window.onload = function () {
+        
+        // CREARE COLECTIE 
+
+        for (var i = 0; i < 10; i++) {
+          var div = document.createElement("div");
+
+          div.className = "dreptunghi"; 
+          // ALTA VARIANTA --> div.classList.add("dreptunghi");
+          div.innerHTML = "divul " + (i + 1);
+          document.body.appendChild(div);
+
+          // preluare stil creat cu CSS: 150
+
+          var initial = div.offsetHeight; 
+        }
+
+        divs = document.getElementsByTagName("div");
+
+        for (let div of divs) {
+          let initial = div.offsetHeight;
+
+          div.addEventListener("click", () => {
+            div.style.height = `${div.offsetHeight + 10}px`;
+            event.stopPropagation();
+          });
+        }
+
+        document.body.onclick = function () {
+            //click pe body
+            var divuri = document.getElementsByClassName("dreptunghi");
+            for (d of divuri) d.style.height = initial + "px";
+          };
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

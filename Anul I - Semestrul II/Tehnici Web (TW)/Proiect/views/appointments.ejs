@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Shizuru&display=swap"
+        rel="stylesheet">
+    <title>APPOINTMENTS</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .ticket, .update {
+            color: black;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+            list-style-type: none;
+            width: auto;
+        }
+
+        .norisori {
+            background-color: #78c6f7;
+            background: linear-gradient(#78c6f7, #bbdef9);
+            width: auto;
+            height: 250px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+        }
+
+        #imagininorisori {
+            position: absolute;
+            height: inherit;
+            width: 100%;
+            background: url("./norisori.png");
+            background: url("./norisori2.png") 0 200px,
+                url("./norisori3.png") 0 300px,
+                url("./norisori4.png") 100px 250px;
+            animation: nor 20s linear infinite;
+        }
+
+        @keyframes nor {
+            from {
+                background-position: 0 200px, 0 300px, 100px 250px;
+            }
+
+            to {
+                background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+            }
+        }
+
+        .titlu {
+            width: inherit;
+            height: auto;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 100px;
+            font-weight: bolder;
+            z-index: 1;
+            position: relative;
+            z-index: 2;
+            animation-name: animatiespirit;
+            animation-duration: 2s;
+        }
+
+        @keyframes animatiespirit {
+            0% {
+                left: 100%
+            }
+
+            100% {
+                left: 0%
+            }
+        }
+
+        .motto {
+            width: auto;
+            height: auto;
+            align-self: flex-end;
+            right: 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            position: absolute;
+            animation-name: opacitate;
+            animation-duration: 3s;
+        }
+
+        @keyframes opacitate {
+            from {
+                opacity: 0%;
+            }
+
+            to {
+                opacity: 100%;
+                ;
+            }
+        }
+
+        .separator {
+            height: 50px;
+            width: auto;
+            background-color: black;
+            color: white;
+            font-size: 50px;
+            font-weight: bolder;
+        }
+
+        p {
+            height: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="norisori">
+        <div id="imagininorisori"></div>
+        <div class="titlu"><span id="spirit">SPIRIT</span></div>
+        <div class="motto">Feel the freedom</div>
+    </div>
+    <div class="separator">APPOINTMENTS</div>
+    <p></p>
+    <div class="update">
+        <p>Update Ticket</p>
+        <hr>
+        <p></p>
+        <form class="updateInputs">
+            <input type="number" name="newId" id="newId" placeholder="Appointment ID">
+            <select id="tip" name="tip">
+                <option value="Horseback Riding">HORSEBACK RIDING</option>
+                <option value="Riding Lesson">RIDING LESSON</option>
+                <option value="Dressage Lesson">DRESSAGE LESSON</option>
+                <option value="Show Jumping Lesson">SHOW JUMPING LESSON</option>
+            </select>
+        </form>
+        <p></p>
+        <button onclick="updateTicket()">Update</button>
+    </div>
+    <p></p>
+    <div class="allTickets">
+        <% obj.forEach( (programare)=> { %>
+            <ul class="ticket">
+                <p>Appointment ID: <span>
+                        <%= programare.id %>
+                    </span> </p>
+                <hr>
+                <br>
+                <li>Name: <%= programare.name %>
+                </li>
+                <li>Phone number: <%= programare.phone %>
+                </li>
+                <li>Date: <%= programare.date %>
+                </li>
+                <li>Time: <%= programare.time %>
+                </li>
+                <li>Activity: <%= programare.activity %>
+                </li>
+                <p></p>
+                <button class="delete" onclick="getRidOfIt(<%- programare.id %>)">Delete</button>
+            </ul>
+            <p></p>
+            <% } ); %>
+    </div>
+
+
+
+    <script>
+        function getRidOfIt(theId) {
+            fetch('http://localhost:5000/appointments', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ id: Number(theId) })
+            })
+                .then(res => {
+                    alert("Appointment deleted!");
+                })
+                .catch(err => {
+                    window.location.reload()
+                })
+        }
+
+        function updateTicket() {
+            const formular = document.querySelector('.updateInputs');
+            const updateData = {
+                id: formular.elements['newId'].value,
+                activity: formular.elements['tip'].value
+            }
+            console.log(updateData)
+            formular.elements['newId'].value = "";
+            formular.elements['tip'].value = "";
+
+            fetch('http://localhost:5000/appointments', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(updateData)
+            })
+                .then()
+                .catch(err => {
+                    window.location.reload()
+                })
+        }
+    </script>
+</body>
+
+</html>
