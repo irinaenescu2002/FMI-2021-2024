@@ -43,7 +43,7 @@ data List a = Nil
 instance Functor List where
     fmap :: (a -> b) -> List a -> List b
     fmap f Nil = Nil
-    fmap f (Cons a l) = Cons (f a) Nil
+    fmap f (Cons a l) = Cons (f a) (fmap f l)
 
 concatOnList :: List a -> List a -> List a
 concatOnList l Nil = l
@@ -157,3 +157,9 @@ test34 = mkPerson "Gigel" "Str Academiei" == Just (Person (Name "Gigel") (Addres
 
 mkPerson2 :: String -> String -> Maybe Person
 mkPerson2 nume adresa = Person <$> Just (Name nume) <*> Just (Address adresa)
+
+mkAddress2 :: String -> Maybe Address
+mkAddress2 adresa = Address <$> Just adresa
+
+mkName2 :: String -> Maybe Name
+mkName2 nume = Name <$> Just nume 
